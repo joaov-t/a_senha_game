@@ -15,6 +15,33 @@ gameCode *getCode(){
     return newCode;
 }
 
+/**
+ * Função responsável por gerar o código em 
+ * uma estrutura gameCode. Utiliza o caracter
+ * '@' como senha padrão para facilitar a
+ * implementação do jogo.
+ * 
+ * @param {gameCode*} Ponteiro para 
+ *  Estrutura gameCode.
+*/
 void generateCode(gameCode *code){
-    //ToDo
+    int i=0;
+    char *gCode = malloc(code->length);
+    
+    for(int i=0; i<code->length; i++){
+        gCode[i] = '@';
+    }
+    
+    srand(time(0));
+    
+    while(i<code->length){
+        char gChar = (int)(rand()%(code->maxRange+1))+'0';
+        
+        if(code->allowRepeat || !strchr(gCode, gChar)){
+            gCode[i] = gChar;
+            i++;
+        }
+    }
+    
+    code->codeValue = gCode;
 }

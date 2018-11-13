@@ -11,4 +11,7 @@ typedef struct gameCode{
     char *codeValue;
 } gameCode;
 
+
 gameCode *getCode();
+
+void generateCode(gameCode *code);
