@@ -1,3 +1,6 @@
+#ifndef GAMECODE_H
+#define GAMECODE_H
+
 /**
  * Estrutura gameCode contendo
  * tamanho da senha, limite máximo,
@@ -10,3 +13,5 @@ typedef struct gameCode{
     int allowRepeat;
     char *codeValue;
 } gameCode;
+
+#endif /*GAMECODE_H*/

@@ -2,26 +2,26 @@
 #include <stdio.h>
 #include <string.h>
 #include "src/headers/codeGenerator.h"
+#include "src/headers/attemptProcessor.h"
 
 void main(){
     gameCode *myCode = getCode();
     myCode->maxRange = 3;
     myCode->length = 3;
     myCode->allowRepeat = 1;
-    
-    myCode->codeValue = "TES";
-    printf("%s\n", myCode->codeValue);
-    
     generateCode(myCode);
-    printf("%s\n", myCode->codeValue);
-    
-    myCode->maxRange = 4;
-    myCode->length = 4;    
-    
-    generateCode(myCode);
-    printf("%s\n", myCode->codeValue);
-    
+
+    processAttempt(*myCode, "1234");
+    printf("\n");
+    processAttempt(*myCode, "12");
+    printf("\n");
+    processAttempt(*myCode, "122");
+    printf("\n");
     myCode->allowRepeat = 0;
-    generateCode(myCode);
-    printf("%s\n", myCode->codeValue);
+    processAttempt(*myCode, "122");
+    printf("\n");
+    processAttempt(*myCode, "12A");
+    printf("\n");
+    processAttempt(*myCode, "123");
+    printf("\n");
 }
