@@ -1,6 +1,6 @@
 #include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
+#include "../headers/ioControl.h"
 #include "../headers/attemptProcessor.h"
 
 /**
@@ -85,6 +85,20 @@ int checkValidInput(char *input, gameCode gCode){
 
 
 /**
+ * Função responsável por processar o input
+ * válido do usuário e imprimir as informações
+ * sobre sua tentativa.
+ * 
+ * @param {char} *generatedCode String correspondente
+ *  à senha gerada pelo jogo.
+ * @param {char} *inputedCode String correspondente
+ *  à senha inserida pelo jogador.
+*/
+void processInputedCode(char *generatedCode, char *inputedCode){
+    //ToDo
+}
+
+/**
  * Função responsável por verificar
  * se a tentativa inserida pelo usuário é
  * válida. Após a verificação, imprime
@@ -96,9 +110,6 @@ int checkValidInput(char *input, gameCode gCode){
  *  no jogo.
 */
 void processAttempt(gameCode gCode, char *playerInput){
-    if(!checkValidInput(playerInput, gCode)){
-        printf("Valid Input");
-    } else {
-        printf("Invalid Input");
-    }
+    checkValidInput(playerInput, gCode);
+    processInputedCode(gCode.codeValue, playerInput);
 }

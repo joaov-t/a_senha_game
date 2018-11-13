@@ -1,0 +1,1 @@
+void ioPrint(const char *, ...);

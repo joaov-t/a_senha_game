@@ -1,6 +1,6 @@
 #include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
+#include "src/headers/ioControl.h"
 #include "src/headers/codeGenerator.h"
 #include "src/headers/attemptProcessor.h"
 
@@ -11,17 +11,19 @@ void main(){
     myCode->allowRepeat = 1;
     generateCode(myCode);
 
+    /* Tests Input Cases */
     processAttempt(*myCode, "1234");
-    printf("\n");
+    ioPrint("\n");
     processAttempt(*myCode, "12");
-    printf("\n");
+    ioPrint("\n");
     processAttempt(*myCode, "122");
-    printf("\n");
+    ioPrint("\n");
     myCode->allowRepeat = 0;
     processAttempt(*myCode, "122");
-    printf("\n");
+    ioPrint("\n");
     processAttempt(*myCode, "12A");
-    printf("\n");
+    ioPrint("\n");
     processAttempt(*myCode, "123");
-    printf("\n");
+    ioPrint("\n");
+    /* End of Test */
 }
