@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
-#include "../headers/ioControl.h"
+#include "../headers/interfaceControl.h"
 #include "../headers/attemptProcessor.h"
 #include "../struct/gameMessages.h"
 
@@ -148,19 +148,19 @@ int* processAttempt(gameCode gCode, char playerInput[]){
     if(!validationCode){ 
         response = processInputedCode(gCode.codeValue, playerInput);
     } else {
-        ioPrint(INVALID_INPUT);
+        interfacePrint(INVALID_INPUT);
         
         switch (validationCode){
             case 1:
-                ioPrint(DIFFERENT_SIZE);
+                interfacePrint(DIFFERENT_SIZE);
                 break;
 
             case 2:
-                ioPrint(HAS_NAN_CHAR);
+                interfacePrint(HAS_NAN_CHAR);
                 break;
 
             case 3:
-                ioPrint(REPEATED_CHAR);
+                interfacePrint(REPEATED_CHAR);
                 break;
         
             default:

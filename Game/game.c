@@ -1,29 +1,9 @@
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
-#include "src/headers/ioControl.h"
-#include "src/headers/codeGenerator.h"
-#include "src/headers/attemptProcessor.h"
+#include "src/headers/interfaceControl.h"
+#include "src/struct/gameMessages.h"
 
 void main(){
-    gameCode *myCode = getCode();
-
-    myCode->maxRange = 4;
-    myCode->length = 4;
-    myCode->allowRepeat = 1;
-    myCode->codeValue = "1434";
-
-    char input[myCode->length];
-    int *attemptResult;
-
-    /* Tests Input Cases */
-    ioScan("%s", input);
-    attemptResult = processAttempt(*myCode, input);
-    if(attemptResult != NULL){
-        ioPrint(" |%d %d| \n", attemptResult[0], attemptResult[1]);
-    } else {
-        ioPrint(" XX ");
-    }
-    ioPrint("\n");
-    /* End of Test */
+    interfacePrintMenu(MAIN_MENU_SIZE, MAIN_MENU);
+    interfacePrintMenu(DIFFIC_MENU_SIZE, DIFFIC_MENU);
 }

@@ -6,4 +6,18 @@
 #define DIFFERENT_SIZE "Senha inserida possui tamanho diferente do escolhido no modo de jogo! "
 #define INVALID_INPUT "Entrada Invalida! "
 
+#define MAIN_MENU_SIZE 3
+static char *MAIN_MENU[] = {
+    "Definir dificuldade",
+    "Jogar",
+    "Sair"
+};
+
+#define DIFFIC_MENU_SIZE 3
+static char *DIFFIC_MENU[] = {
+    "0 a 4, 3 caracteres, repete",
+    "0 a 5, 4 caracteres, não repete",
+    "0 a 9, 4 caracteres, não repete"
+};
+
 #endif
