@@ -115,7 +115,7 @@ void gameProcedure(){
         
         do{
             interfaceScan("%s", input);
-            if(!strcmp(input, (char*)"sair")){
+            if(!strcmp(input, (char*)GAME_EXIT_CODE)){
 
                 exitFlag = 1;
                 interfacePrint(CODE_IS, code->codeValue);
@@ -143,8 +143,13 @@ void gameProcedure(){
  * do jogo, de selecionar os menus e 
  * definir propriedades do jogo.
 */
-void runGame(){
+void runGame(int paramDiff){
     initializeGameData();
+
+    if(!paramDiff){
+        interfacePrint(SELECT_DIFF);
+        changeDifficult();
+    }
 
     int menuOpt = 0;
     do{

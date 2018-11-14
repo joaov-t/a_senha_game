@@ -11,6 +11,8 @@
 #define CODE_IS "A senha é: %s\n"
 #define TEST_MODE "(MODO TESTE) Senha: %s\n"
 #define GENERATED_CODE "Senha Gerada.\nInsira o palpite ou digite 'sair' para sair.\n"
+#define GAME_EXIT_CODE "sair"
+#define SELECT_DIFF "Selecione a dificuldade: "
 
 #define MAIN_MENU_SIZE 3
 static char *MAIN_MENU[] = {

@@ -1,1 +1,1 @@
-void runGame();
+void runGame(int);
