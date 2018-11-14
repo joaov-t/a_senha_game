@@ -13,6 +13,8 @@
 #define GENERATED_CODE "Senha Gerada.\nInsira o palpite ou digite 'sair' para sair.\n"
 #define GAME_EXIT_CODE "sair"
 #define SELECT_DIFF "Selecione a dificuldade: "
+#define INVALID_OPTION "Opção inválida!\n"
+#define HELP_MESSAGE "Jogo a senha desenvolvido como TP de AEDS1 para o curso de Sistemas de Informação - Universidade Federal de Minas Gerais.\n Uso:\n ./game -h|--help ~ Exibe está mensagem\n ./game -d [1-4] ~ Inicia o jogo definindo do nível inicial.\n"
 
 #define MAIN_MENU_SIZE 3
 static char *MAIN_MENU[] = {

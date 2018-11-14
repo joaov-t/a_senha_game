@@ -149,6 +149,8 @@ void runGame(int paramDiff){
     if(!paramDiff){
         interfacePrint(SELECT_DIFF);
         changeDifficult();
+    } else {
+        gameInstance->difficulty = paramDiff;
     }
 
     int menuOpt = 0;
