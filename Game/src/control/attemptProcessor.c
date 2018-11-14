@@ -2,6 +2,7 @@
 #include <string.h>
 #include "../headers/ioControl.h"
 #include "../headers/attemptProcessor.h"
+#include "../struct/gameMessages.h"
 
 /**
  * Função responsável por verificar se 
@@ -124,12 +125,21 @@ int* processInputedCode(char *generatedCode, char *inputedCode){
  * Função responsável por verificar
  * se a tentativa inserida pelo usuário é
  * válida. Após a verificação, imprime
- * a mensagem correspondente.
+ * a mensagem correspondente. 
+ * Retorna um ponteiro para um array
+ * de inteiros no caso de uma entrada valida, no
+ * formato { posicoes_corretas, numeros_corretos },
+ * sendo que numeros_corretos estão na posição
+ * errada. Caso a entrada seja invalida, retorna
+ * NULL e imprime o erro na tela.
  * 
  * @param {gameCode *} gCode Referencia à uma
  *  senha gerada pelo jogo.
  * @param {char *} playerInput Entrada do jogador
  *  no jogo.
+ * 
+ * @return {int*} Ponteiro para array de respostas
+ *  ou NULL, de acordo com a validade do input.
 */
 int* processAttempt(gameCode gCode, char playerInput[]){
     int validationCode = checkValidInput(playerInput, gCode);
@@ -138,19 +148,19 @@ int* processAttempt(gameCode gCode, char playerInput[]){
     if(!validationCode){ 
         response = processInputedCode(gCode.codeValue, playerInput);
     } else {
-        ioPrint("Entrada invalida! ");
+        ioPrint(INVALID_INPUT);
         
         switch (validationCode){
             case 1:
-                ioPrint("Senha inserida possui tamanho diferente do escolhido no modo de jogo!");
+                ioPrint(DIFFERENT_SIZE);
                 break;
 
             case 2:
-                ioPrint("Senha inserida possui caracter não numérico!");
+                ioPrint(HAS_NAN_CHAR);
                 break;
 
             case 3:
-                ioPrint("Neste modo de jogo não são permitidas repetições!");
+                ioPrint(REPEATED_CHAR);
                 break;
         
             default:

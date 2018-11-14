@@ -22,7 +22,7 @@ void main(){
     if(attemptResult != NULL){
         ioPrint(" |%d %d| \n", attemptResult[0], attemptResult[1]);
     } else {
-        ioPrint("vrau");
+        ioPrint(" XX ");
     }
     ioPrint("\n");
     /* End of Test */

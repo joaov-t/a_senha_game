@@ -1,4 +1,4 @@
-#include "gameCode.h"
+#include "../struct/gameCode.h"
 
 gameCode *getCode();
 
