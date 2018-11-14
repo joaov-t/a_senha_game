@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <ncurses.h>
-#include "../struct/gameMessages.h"
+#include "../struct/gameMacros.h"
 #include "../headers/interfaceControl.h"
 
 /**
@@ -51,5 +51,6 @@ void interfaceScan(const char * format, ...){
     va_list args;
     va_start (args, format);
     vscanf(format, args);
+    getchar();
     va_end (args);
 }

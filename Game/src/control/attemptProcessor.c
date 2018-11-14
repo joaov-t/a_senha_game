@@ -2,7 +2,7 @@
 #include <string.h>
 #include "../headers/interfaceControl.h"
 #include "../headers/attemptProcessor.h"
-#include "../struct/gameMessages.h"
+#include "../struct/gameMacros.h"
 
 /**
  * Função responsável por verificar se 
