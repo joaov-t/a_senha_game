@@ -7,6 +7,10 @@
 #define GREATER_THAN_MAX_RANGE "Você inseriu um digito maior que o máximo permitido para este nivel de dificuldade!\n"
 #define DIFFIC_DEFINED_TO "Dificuldade definida para: %d\n"
 #define DIFFIC_NOT_DEFINED "Dificuldade do jogo não foi definida!\n"
+#define CONGRAT_FOUND_CODE "Parabéns, você acertou a senha em %d tentativa(s)\n"
+#define CODE_IS "A senha é: %s\n"
+#define TEST_MODE "(MODO TESTE) Senha: %s\n"
+#define GENERATED_CODE "Senha Gerada.\nInsira o palpite ou digite 'sair' para sair.\n"
 
 #define MAIN_MENU_SIZE 3
 static char *MAIN_MENU[] = {

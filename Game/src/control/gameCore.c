@@ -103,24 +103,37 @@ void gameProcedure(){
     } else {
         gameCode *code = newCode();
         if(gameInstance->difficulty == 4){
-            interfacePrint("%s\n", code->codeValue);
+            interfacePrint(TEST_MODE, code->codeValue);
         }
 
+        interfacePrint(GENERATED_CODE);
+
         int *attemptResult;
+        int attemptCount = 1;
         char input[code->length];
         int exitFlag = 0;
         
         do{
             interfaceScan("%s", input);
             if(!strcmp(input, (char*)"sair")){
+
                 exitFlag = 1;
+                interfacePrint(CODE_IS, code->codeValue);
+
             } else {
+
                 attemptResult = processAttempt(*code, input);
-                interfacePrint("| %d %d |\n", attemptResult[0], attemptResult[1]);
-                if(attemptResult[0]==code->length){
-                    exitFlag = 1;
+                if(attemptResult!=NULL){
+                    interfacePrint("| %d %d |\n", attemptResult[0], attemptResult[1]);
+                    if(attemptResult[0]==code->length){
+                        exitFlag = 1;
+                        interfacePrint(CONGRAT_FOUND_CODE, attemptCount);
+                    }
                 }
+
             }
+
+            attemptCount++;
         } while(!exitFlag);
     }
 }
