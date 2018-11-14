@@ -1,2 +1,2 @@
 void ioPrint(const char *, ...);
-void ioScan(const char *, long);
+void ioScan(const char *, ...);

@@ -14,7 +14,7 @@ void main(){
     char input[myCode->length];
 
     /* Tests Input Cases */
-    scanf("%s", input);
+    ioScan("%s", input);
     processAttempt(*myCode, input);
     ioPrint("\n");
     processAttempt(*myCode, "12");

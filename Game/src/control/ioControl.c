@@ -16,3 +16,10 @@ void ioPrint(const char * input, ...){
     vprintf (input, args);
     va_end (args);
 }
+
+void ioScan(const char * format, ...){
+    va_list args;
+    va_start (args, format);
+    vscanf(format, args);
+    va_end (args);
+}
