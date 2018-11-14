@@ -95,7 +95,26 @@ int checkValidInput(char *input, gameCode gCode){
  *  à senha inserida pelo jogador.
 */
 void processInputedCode(char *generatedCode, char *inputedCode){
-    //ToDo
+    int correctNum = 0;
+    int correctPos = 0;
+    int gCodeLen = strlen(generatedCode);
+    
+    for(int i=0; i<gCodeLen; i++){
+        if(generatedCode[i]==inputedCode[i]){
+            inputedCode[i] = '@';
+            correctPos++;
+        }
+        ioPrint("%c", inputedCode[i]);
+    }
+    
+    for(int i=0; i<gCodeLen; i++){
+        if(inputedCode[i]!='@' && strchr(generatedCode, inputedCode[i])){
+            correctNum++;
+        }
+        
+    }
+    ioPrint("|%d\t", correctPos);
+    ioPrint("%d|", correctNum);
 }
 
 /**
@@ -109,7 +128,11 @@ void processInputedCode(char *generatedCode, char *inputedCode){
  * @param {char *} playerInput Entrada do jogador
  *  no jogo.
 */
-void processAttempt(gameCode gCode, char *playerInput){
-    checkValidInput(playerInput, gCode);
-    processInputedCode(gCode.codeValue, playerInput);
+void processAttempt(gameCode gCode, char playerInput[]){
+    /*Todo: Finalizar Codigo*/
+    if(!checkValidInput(playerInput, gCode)){ 
+        processInputedCode(gCode.codeValue, playerInput);
+    } else {
+        ioPrint("Entrada invalida");
+    }
 }

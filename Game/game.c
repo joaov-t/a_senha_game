@@ -1,18 +1,21 @@
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 #include "src/headers/ioControl.h"
 #include "src/headers/codeGenerator.h"
 #include "src/headers/attemptProcessor.h"
 
 void main(){
     gameCode *myCode = getCode();
-    myCode->maxRange = 3;
-    myCode->length = 3;
+    myCode->maxRange = 4;
+    myCode->length = 4;
     myCode->allowRepeat = 1;
-    generateCode(myCode);
+    myCode->codeValue = "1434";
+    char input[myCode->length];
 
     /* Tests Input Cases */
-    processAttempt(*myCode, "1234");
+    scanf("%s", input);
+    processAttempt(*myCode, input);
     ioPrint("\n");
     processAttempt(*myCode, "12");
     ioPrint("\n");
