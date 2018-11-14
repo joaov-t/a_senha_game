@@ -27,32 +27,6 @@ int hasNaNChar(char *str){
     return hasNaN;
 }
 
-
-/**
- * Função responsável por verificar se 
- * possui na String dois caracteres ASCII 
- * repetidos.
- * 
- * @param {char *} str String a ser 
- *  verificada.
- * 
- * @return {int} Retorna 1 se possui um
- *  caracter repetido e 0 se não.
-*/
-int hasRepeatedChar(char *str){
-    int hasRepeated = 0;
-
-    for (int i = 0; i < strlen(str); i++) { 
-        for (int j = i + 1; j < strlen(str); j++) { 
-            if (str[i] == str[j]) { 
-                hasRepeated = 1; 
-            } 
-        } 
-    } 
-
-    return hasRepeated;
-}
-
 /**
  * Função responsável por verificar se 
  * possui na String algum digito maior
@@ -85,8 +59,7 @@ int hasGrThanMaxRange(char *str, int maxRange){
  *  0 - Válido.
  *  1 - Senha de tamanho diferente.
  *  2 - Caracter não numérico.
- *  3 - Caracter repetindo.
- *  4 - Digito maior que o maior permitido.
+ *  3 - Digito maior que o maior permitido.
  * 
  * @param {char} *input String correspondente
  *  a entrada do usuário.
@@ -103,10 +76,8 @@ int checkValidInput(char *input, gameCode gCode){
         validFlag = 1;
     } else if(hasNaNChar(input)){
         validFlag = 2;
-    } else if(!gCode.allowRepeat && hasRepeatedChar(input)){
-        validFlag = 3;
     } else if(hasGrThanMaxRange(input, gCode.maxRange)){
-        validFlag = 4;
+        validFlag = 3;
     }
 
     return validFlag;
@@ -115,13 +86,16 @@ int checkValidInput(char *input, gameCode gCode){
 
 /**
  * Função responsável por processar o input
- * válido do usuário e imprimir as informações
+ * válido do usuário e retornar as informações
  * sobre sua tentativa.
  * 
  * @param {char} *generatedCode String correspondente
  *  à senha gerada pelo jogo.
  * @param {char} *inputedCode String correspondente
  *  à senha inserida pelo jogador.
+ * 
+ * @return {int*} Array de Posições Corretas, Numeros
+ *  Corretos.
 */
 int* processInputedCode(char *generatedCode, char *inputedCode){
     int correctNum = 0;
@@ -129,15 +103,19 @@ int* processInputedCode(char *generatedCode, char *inputedCode){
     int gCodeLen = strlen(generatedCode);
     static int arrayResult[2];
 
+    char toProccessCode[gCodeLen];
+    strcpy(toProccessCode, generatedCode);
+
     for(int i=0; i<gCodeLen; i++){
-        if(generatedCode[i]==inputedCode[i]){
+        if(toProccessCode[i]==inputedCode[i]){
             inputedCode[i] = '@';
+            toProccessCode[i] = '@';
             correctPos++;
         }
     }
     
     for(int i=0; i<gCodeLen; i++){
-        if(inputedCode[i]!='@' && strchr(generatedCode, inputedCode[i])){
+        if(inputedCode[i]!='@' && strchr(toProccessCode, inputedCode[i])){
             correctNum++;
         }
         
@@ -188,10 +166,6 @@ int* processAttempt(gameCode gCode, char playerInput[]){
                 break;
 
             case 3:
-                interfacePrint(REPEATED_CHAR);
-                break;
-            
-            case 4:
                 interfacePrint(GREATER_THAN_MAX_RANGE);
                 break;
         

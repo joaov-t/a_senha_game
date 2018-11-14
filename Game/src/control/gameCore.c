@@ -49,10 +49,47 @@ void changeDifficult(){
     do{
         interfacePrintMenu(DIFFIC_MENU_SIZE, DIFFIC_MENU);
         interfaceScan("%d", &opt);
-    } while(opt<1 || opt>3);
+    } while(opt<1 || opt>4);
 
     gameInstance->difficulty = opt;
     interfacePrint(DIFFIC_DEFINED_TO, opt);
+}
+
+/**
+ * Função responsável por gerar um
+ * novo código definindo suas
+ * propriedades de acordo com a 
+ * dificuldade do jogo escolhido.
+ * 
+ * @return {gameCode*} ponteiro
+ *  para uma estrutura de senha.
+*/
+gameCode* newCode(){
+    gameCode *myCode = getCode();
+
+    switch(gameInstance->difficulty){
+        case 1:
+            myCode->length = 3;
+            myCode->maxRange = 4;
+            myCode->allowRepeat = 1;
+            break;
+
+        case 2:
+            myCode->length = 4;
+            myCode->maxRange = 5;
+            myCode->allowRepeat = 0;
+            break;
+
+        case 3:
+        case 4:
+            myCode->length = 4;
+            myCode->maxRange = 9;
+            myCode->allowRepeat = 0;
+            break;
+    }
+
+    generateCode(myCode);
+    return myCode;
 }
 
 /**
@@ -63,6 +100,28 @@ void changeDifficult(){
 void gameProcedure(){
     if(!gameInstance->difficulty){
         interfacePrint(DIFFIC_NOT_DEFINED);
+    } else {
+        gameCode *code = newCode();
+        if(gameInstance->difficulty == 4){
+            interfacePrint("%s\n", code->codeValue);
+        }
+
+        int *attemptResult;
+        char input[code->length];
+        int exitFlag = 0;
+        
+        do{
+            interfaceScan("%s", input);
+            if(!strcmp(input, (char*)"sair")){
+                exitFlag = 1;
+            } else {
+                attemptResult = processAttempt(*code, input);
+                interfacePrint("| %d %d |\n", attemptResult[0], attemptResult[1]);
+                if(attemptResult[0]==code->length){
+                    exitFlag = 1;
+                }
+            }
+        } while(!exitFlag);
     }
 }
 
