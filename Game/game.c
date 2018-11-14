@@ -7,26 +7,23 @@
 
 void main(){
     gameCode *myCode = getCode();
+
     myCode->maxRange = 4;
     myCode->length = 4;
     myCode->allowRepeat = 1;
     myCode->codeValue = "1434";
+
     char input[myCode->length];
+    int *attemptResult;
 
     /* Tests Input Cases */
     ioScan("%s", input);
-    processAttempt(*myCode, input);
-    ioPrint("\n");
-    processAttempt(*myCode, "12");
-    ioPrint("\n");
-    processAttempt(*myCode, "122");
-    ioPrint("\n");
-    myCode->allowRepeat = 0;
-    processAttempt(*myCode, "122");
-    ioPrint("\n");
-    processAttempt(*myCode, "12A");
-    ioPrint("\n");
-    processAttempt(*myCode, "123");
+    attemptResult = processAttempt(*myCode, input);
+    if(attemptResult != NULL){
+        ioPrint(" |%d %d| \n", attemptResult[0], attemptResult[1]);
+    } else {
+        ioPrint("vrau");
+    }
     ioPrint("\n");
     /* End of Test */
 }

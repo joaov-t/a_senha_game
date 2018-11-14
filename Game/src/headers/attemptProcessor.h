@@ -1,3 +1,3 @@
 #include "gameCode.h"
 
-void processAttempt(gameCode gCode, char *playerInput);
+int* processAttempt(gameCode gCode, char *playerInput);

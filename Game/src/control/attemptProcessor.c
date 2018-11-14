@@ -94,17 +94,17 @@ int checkValidInput(char *input, gameCode gCode){
  * @param {char} *inputedCode String correspondente
  *  à senha inserida pelo jogador.
 */
-void processInputedCode(char *generatedCode, char *inputedCode){
+int* processInputedCode(char *generatedCode, char *inputedCode){
     int correctNum = 0;
     int correctPos = 0;
     int gCodeLen = strlen(generatedCode);
-    
+    static int arrayResult[2];
+
     for(int i=0; i<gCodeLen; i++){
         if(generatedCode[i]==inputedCode[i]){
             inputedCode[i] = '@';
             correctPos++;
         }
-        ioPrint("%c", inputedCode[i]);
     }
     
     for(int i=0; i<gCodeLen; i++){
@@ -113,8 +113,11 @@ void processInputedCode(char *generatedCode, char *inputedCode){
         }
         
     }
-    ioPrint("|%d\t", correctPos);
-    ioPrint("%d|", correctNum);
+
+    arrayResult[0] = correctPos;
+    arrayResult[1] = correctNum;
+
+    return arrayResult;
 }
 
 /**
@@ -128,11 +131,34 @@ void processInputedCode(char *generatedCode, char *inputedCode){
  * @param {char *} playerInput Entrada do jogador
  *  no jogo.
 */
-void processAttempt(gameCode gCode, char playerInput[]){
-    /*Todo: Finalizar Codigo*/
-    if(!checkValidInput(playerInput, gCode)){ 
-        processInputedCode(gCode.codeValue, playerInput);
+int* processAttempt(gameCode gCode, char playerInput[]){
+    int validationCode = checkValidInput(playerInput, gCode);
+    int *response = malloc(sizeof(int));
+
+    if(!validationCode){ 
+        response = processInputedCode(gCode.codeValue, playerInput);
     } else {
-        ioPrint("Entrada invalida");
+        ioPrint("Entrada invalida! ");
+        
+        switch (validationCode){
+            case 1:
+                ioPrint("Senha inserida possui tamanho diferente do escolhido no modo de jogo!");
+                break;
+
+            case 2:
+                ioPrint("Senha inserida possui caracter não numérico!");
+                break;
+
+            case 3:
+                ioPrint("Neste modo de jogo não são permitidas repetições!");
+                break;
+        
+            default:
+                break;
+        }
+
+        response = NULL;
     }
+
+    return response;
 }
