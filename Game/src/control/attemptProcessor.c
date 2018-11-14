@@ -54,6 +54,31 @@ int hasRepeatedChar(char *str){
 }
 
 /**
+ * Função responsável por verificar se 
+ * possui na String algum digito maior
+ * que o máximo permitido na senha.
+ * 
+ * @param {char *} str String a ser 
+ *  verificada.
+ * @param {int} maxRange Máximo permitido
+ *  para senha gerada.
+ * 
+ * @return {int} Retorna 1 se possui um
+ *  digito maior e 0 se não.
+*/
+int hasGrThanMaxRange(char *str, int maxRange){
+    int hasGreaterThan = 0;
+
+    for (int i = 0; i < strlen(str); i++) { 
+        if((str[i]-'0')>maxRange){
+            hasGreaterThan = 1;
+        }
+    } 
+
+    return hasGreaterThan;
+}
+
+/**
  * Verifica se a entrada é válida de acordo
  * com os parametros da senha gerada.
  * Retorna:
@@ -61,6 +86,7 @@ int hasRepeatedChar(char *str){
  *  1 - Senha de tamanho diferente.
  *  2 - Caracter não numérico.
  *  3 - Caracter repetindo.
+ *  4 - Digito maior que o maior permitido.
  * 
  * @param {char} *input String correspondente
  *  a entrada do usuário.
@@ -79,6 +105,8 @@ int checkValidInput(char *input, gameCode gCode){
         validFlag = 2;
     } else if(!gCode.allowRepeat && hasRepeatedChar(input)){
         validFlag = 3;
+    } else if(hasGrThanMaxRange(input, gCode.maxRange)){
+        validFlag = 4;
     }
 
     return validFlag;
@@ -161,6 +189,10 @@ int* processAttempt(gameCode gCode, char playerInput[]){
 
             case 3:
                 interfacePrint(REPEATED_CHAR);
+                break;
+            
+            case 4:
+                interfacePrint(GREATER_THAN_MAX_RANGE);
                 break;
         
             default:
