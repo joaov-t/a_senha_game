@@ -53,6 +53,7 @@ void changeDifficult(){
 
     gameInstance->difficulty = opt;
     interfacePrint(DIFFIC_DEFINED_TO, opt);
+    waitKeyPress();
 }
 
 /**
@@ -119,6 +120,7 @@ void gameProcedure(){
 
                 exitFlag = 1;
                 interfacePrint(CODE_IS, code->codeValue);
+                waitKeyPress();
 
             } else {
 
@@ -128,6 +130,7 @@ void gameProcedure(){
                     if(attemptResult[0]==code->length){
                         exitFlag = 1;
                         interfacePrint(CONGRAT_FOUND_CODE, attemptCount);
+                        waitKeyPress();
                     }
                 }
 
@@ -142,11 +145,16 @@ void gameProcedure(){
  * função responsável por realizar o fluxo
  * do jogo, de selecionar os menus e 
  * definir propriedades do jogo.
+ * 
+ * @param {int} paramDiff Indicador de uso
+ *  de passagem de dificuldade pela 
+ *  linha de comando.
 */
 void runGame(int paramDiff){
     initializeGameData();
 
     if(!paramDiff){
+        system(CLR_SCR); //removeThat
         interfacePrint(SELECT_DIFF);
         changeDifficult();
     } else {
@@ -155,9 +163,11 @@ void runGame(int paramDiff){
 
     int menuOpt = 0;
     do{
+        system(CLR_SCR); //removeThat
         menuOpt = mainMenu();
         switch(menuOpt){
             case 1:
+                system(CLR_SCR); //removeThat
                 changeDifficult();
                 break;
             case 2:

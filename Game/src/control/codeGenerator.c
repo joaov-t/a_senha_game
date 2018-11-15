@@ -20,7 +20,7 @@ gameCode *getCode(){
  * '@' como senha padrão para facilitar a
  * implementação do jogo.
  * 
- * @param {gameCode*} Ponteiro para 
+ * @param {gameCode} *code Ponteiro para 
  *  Estrutura gameCode.
 */
 void generateCode(gameCode *code){

@@ -12,10 +12,15 @@
 #define TEST_MODE "(MODO TESTE) Senha: %s\n"
 #define GENERATED_CODE "Senha Gerada.\nInsira o palpite ou digite 'sair' para sair.\n"
 #define GAME_EXIT_CODE "sair"
-#define SELECT_DIFF "Selecione a dificuldade: "
+#define SELECT_DIFF "Selecione a dificuldade: \n"
 #define INVALID_OPTION "Opção inválida!\n"
 #define INVALID_RANGE_PARAM "Nível inserido invalido!\n"
 #define HELP_MESSAGE "Jogo a senha desenvolvido como TP de AEDS1 para o curso de Sistemas de Informação - Universidade Federal de Minas Gerais.\n Uso:\n ./game -h|--help ~ Exibe está mensagem\n ./game -d [1-4] ~ Inicia o jogo definindo do nível inicial.\n"
+
+#define CLR_SCR "clear"
+#ifdef _WIN32
+#define CLR_SCR "cls"
+#endif
 
 #define MAIN_MENU_SIZE 3
 static char *MAIN_MENU[] = {

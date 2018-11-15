@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <ncurses.h>
+#include <stdio.h>
 #include "../struct/gameMacros.h"
 #include "../headers/interfaceControl.h"
 
@@ -37,7 +38,6 @@ void interfacePrint(const char * input, ...){
     va_end (args);
 }
 
-
 /**
  * Função responsável por ler os
  * dados de entrada de forma correta.
@@ -53,4 +53,18 @@ void interfaceScan(const char * format, ...){
     vscanf(format, args);
     getchar();
     va_end (args);
+}
+
+/**
+ * Função que espera o usuário pressionar
+ * uma tecla de acordo com o sistema operacional.
+*/
+void waitKeyPress(){
+    #ifdef _WIN32
+        getchar();
+    #else
+        system ("/bin/stty raw");
+        getchar();
+        system ("/bin/stty cooked");
+    #endif
 }
